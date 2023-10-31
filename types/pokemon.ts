@@ -17,11 +17,10 @@ export interface PokemonCard {
 }
 
 export interface Pokemon {
-  name: string
-  id: number
-  height: number
-  weight: number
   abilities: Ability[]
+  height: number
+  id: number
+  name: string
   sprites: {
     back_default: string
     back_female: string
@@ -32,6 +31,8 @@ export interface Pokemon {
     front_shiny: string
     front_shiny_female: string
   }
+  types: PokemonType[]
+  weight: number
 }
 
 export interface Ability {
@@ -41,4 +42,12 @@ export interface Ability {
   }
   is_hidden: boolean
   slot: number
+}
+
+export interface PokemonType {
+  slot: number
+  type: {
+    name: string
+    url: string
+  }
 }
