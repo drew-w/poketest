@@ -24,7 +24,7 @@ const filteredPokemon = computed(() => {
 
 //todo REMOVE THIS
 onMounted(async () => {
-  console.log(error)
+  // console.log(error)
 })
 </script>
 
