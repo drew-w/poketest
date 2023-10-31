@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h2>pokemon {{ mon }}</h2>
+    <h2>Pokemon {{ id }}</h2>
     <section class="grid">
       <div class="heading">
         <h2>{{ pokemon?.name }}</h2>
@@ -47,12 +47,12 @@
 <script setup lang="ts">
 import type { Pokemon } from '~/types/pokemon'
 
-const { mon } = useRoute().params
+const { id } = useRoute().params
 definePageMeta({
   layout: 'pokemon'
 })
 
-const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/${mon}`)
+const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/${id}`)
 const numberOfAbilities = pokemon.value?.abilities.length || 1
 
 const capitalizeFirstLetter = (word: string): string => {
@@ -68,6 +68,7 @@ onMounted(async () => {
 
 <style scoped>
 .grid {
+  margin: 10px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
