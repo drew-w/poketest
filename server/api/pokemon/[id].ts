@@ -1,8 +1,9 @@
-export default defineEventHandler(async event => {
-  const name = getRouterParam(event, 'id')
-  const { url } = getQuery(event)
+import { Pokemon } from '~/types/pokemon'
 
-  const data = await $fetch(`${url}`)
+export default defineEventHandler(async event => {
+  const id = getRouterParam(event, 'id')
+
+  const data: Pokemon = await $fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
 
   return data
 })
