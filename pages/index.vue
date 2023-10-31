@@ -34,7 +34,7 @@ import { useDebounceFn } from '@vueuse/core'
 import type { PokemonCard } from '~/types/pokemon'
 
 const { data: initialPokemon } = await useFetch<PokemonCard[] | null>(
-  '/api/list?count=150'
+  '/api/list?count=60'
 )
 // store our list of pokemon here
 const pokemonList = ref(initialPokemon)

@@ -21,26 +21,31 @@
       </div>
     </section>
     <section class="grid">
-      <div class="subBox">
-        <h3>Height</h3>
-        <p>{{ pokemon?.height }}</p>
-      </div>
-      <div class="subBox">
-        <h3>Weight</h3>
-        <p>{{ pokemon?.weight }}</p>
-      </div>
-      <div class="subBox">
-        <h3>Abilities</h3>
-        <span class="listContainer">
-          <div class="listItem" v-for="(ability, index) in pokemon?.abilities">
-            <p v-if="index + 1 < numberOfAbilities" class="name">
-              {{ ability.ability.name + ',' }}&nbsp;
-            </p>
-            <p v-else class="name">
-              {{ ability.ability.name }}
-            </p>
-          </div>
-        </span>
+      <div class="boxContainer">
+        <div class="subBox">
+          <h3>Height</h3>
+          <p>{{ pokemon?.height }}</p>
+        </div>
+        <div class="subBox">
+          <h3>Weight</h3>
+          <p>{{ pokemon?.weight }}</p>
+        </div>
+        <div class="subBox">
+          <h3>Abilities</h3>
+          <span class="listContainer">
+            <div
+              class="listItem"
+              v-for="(ability, index) in pokemon?.abilities"
+            >
+              <p v-if="index + 1 < numberOfAbilities" class="name">
+                {{ ability.ability.name + ',' }}&nbsp;
+              </p>
+              <p v-else class="name">
+                {{ ability.ability.name }}
+              </p>
+            </div>
+          </span>
+        </div>
       </div>
     </section>
   </main>
@@ -113,5 +118,14 @@ const numberOfAbilities = pokemon.value?.abilities.length || 1
 
 .name {
   text-transform: capitalize;
+}
+
+.boxContainer {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1015px;
 }
 </style>
