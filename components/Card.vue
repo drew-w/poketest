@@ -1,16 +1,16 @@
 <template>
-  <div class="card">
-    <NuxtLink :to="`/pokemon/${id}`">
+  <NuxtLink :to="`/pokemon/${id}`">
+    <div class="card">
       <h2>{{ name }}</h2>
-    </NuxtLink>
-    <NuxtImg
-      :src="sprite"
-      draggable="false"
-      width="100"
-      height="100"
-      fit="cover"
-    />
-  </div>
+      <NuxtImg
+        :src="sprite"
+        draggable="false"
+        width="100"
+        height="100"
+        fit="cover"
+      />
+    </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -18,14 +18,17 @@ import type { PokemonCard } from '~/types/pokemon'
 
 const { pokelist } = defineProps<{ pokelist: PokemonCard }>()
 const { name, sprite, id } = pokelist
-// const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/1?url=${url}`)
-
-onMounted(async () => {
-  //   console.log(pokemon.value?.name)
-})
 </script>
 
 <style scoped>
+h2 {
+  color: #0c0c0c;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
 .card {
   border-radius: 8px;
   border-width: 1px;
@@ -39,5 +42,11 @@ onMounted(async () => {
   width: 150px;
   height: 200px;
   background-color: aquamarine;
+  transition-property: background-color;
+  transition-duration: 100ms;
+}
+
+.card:hover {
+  background-color: rgb(107, 220, 182);
 }
 </style>

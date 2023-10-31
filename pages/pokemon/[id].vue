@@ -3,9 +3,9 @@
     <h2>Pokemon {{ id }}</h2>
     <section class="grid">
       <div class="heading">
-        <h2>{{ pokemon?.name }}</h2>
+        <h2 class="name">{{ pokemon?.name }}</h2>
         <NuxtImg
-          :src="pokemon?.sprites.front_default"
+          :src="pokemon?.sprites.front_shiny"
           width="200"
           height="200"
           draggable="false"
@@ -33,10 +33,12 @@
         <h3>Abilities</h3>
         <span class="listContainer">
           <div class="listItem" v-for="(ability, index) in pokemon?.abilities">
-            <p v-if="index + 1 < numberOfAbilities">
-              {{ capitalizeFirstLetter(ability.ability.name) + ',' }}&nbsp;
+            <p v-if="index + 1 < numberOfAbilities" class="name">
+              {{ ability.ability.name + ',' }}&nbsp;
             </p>
-            <p v-else>{{ capitalizeFirstLetter(ability.ability.name) }}</p>
+            <p v-else class="name">
+              {{ ability.ability.name }}
+            </p>
           </div>
         </span>
       </div>
@@ -54,16 +56,6 @@ definePageMeta({
 
 const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/${id}`)
 const numberOfAbilities = pokemon.value?.abilities.length || 1
-
-const capitalizeFirstLetter = (word: string): string => {
-  const firstLetter = word.charAt(0)
-  const remainingLetters = word.substring(1)
-  return firstLetter.toUpperCase() + remainingLetters
-}
-//todo REMOVE THIS
-onMounted(async () => {
-  // console.log(pokemon.value)
-})
 </script>
 
 <style scoped>
@@ -94,8 +86,13 @@ onMounted(async () => {
   flex-direction: row;
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 .listItem {
+  height: 30px;
+  justify-content: baseline;
+  flex-wrap: nowrap;
+  min-width: fit-content;
   display: flex;
   flex-direction: row;
 }
@@ -112,5 +109,9 @@ onMounted(async () => {
   border-style: solid;
   border-width: 1px;
   border-color: #0c0c0c;
+}
+
+.name {
+  text-transform: capitalize;
 }
 </style>

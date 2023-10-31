@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <h2>Home</h2>
-    <div id="app">
+    <span>
       <input
         type="text"
         :value="text"
@@ -10,7 +10,7 @@
       />
       <br />
       You typed: <b>{{ text }}</b>
-    </div>
+    </span>
     <section>
       <div v-if="text === ''" v-for="p in initialPokemon">
         <Card :pokelist="p" />
@@ -34,11 +34,11 @@ import { useDebounceFn } from '@vueuse/core'
 import type { PokemonCard } from '~/types/pokemon'
 
 const { data: initialPokemon } = await useFetch<PokemonCard[] | null>(
-  '/api/list?count=60'
+  '/api/list?count=150'
 )
 // store our list of pokemon here
 const pokemonList = ref(initialPokemon)
-const text = ref('')
+const text = ref<string>('')
 
 // dont filter right away
 const handleChange = useDebounceFn((event: Event) => {
@@ -63,10 +63,18 @@ p {
 }
 section {
   flex-wrap: wrap;
-  max-width: 100vw;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container {
+  flex-direction: column;
+  padding: 10px 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
 }
 </style>
