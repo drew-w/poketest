@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
-import type { PokemonList } from '~/types/pokemon'
+import type { PokemonCard } from '~/types/pokemon'
 
-const { data: initialPokemon, error } = await useFetch<PokemonList[] | null>(
+const { data: initialPokemon, error } = await useFetch<PokemonCard[] | null>(
   '/api/list?count=10'
 )
 // store our list of pokemon here

@@ -10,6 +10,12 @@ export interface PokemonList {
   url: string
 }
 
+export interface PokemonCard {
+  name: string
+  sprite: string
+  id: number
+}
+
 export interface Pokemon {
   name: string
   id: number

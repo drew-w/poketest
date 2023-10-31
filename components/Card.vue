@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <NuxtLink :to="`/pokemon/${pokemon?.id}`">
-      <h2>{{ pokemon?.name }}</h2>
+    <NuxtLink :to="`/pokemon/${id}`">
+      <h2>{{ name }}</h2>
     </NuxtLink>
     <NuxtImg
-      :src="pokemon?.sprites.front_default"
+      :src="sprite"
       draggable="false"
       width="100"
       height="100"
@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import type { PokemonList, Pokemon } from '~/types/pokemon'
+import type { PokemonCard } from '~/types/pokemon'
 
-const { pokelist } = defineProps<{ pokelist: PokemonList }>()
-const { url } = pokelist
-const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/1?url=${url}`)
+const { pokelist } = defineProps<{ pokelist: PokemonCard }>()
+const { name, sprite, id } = pokelist
+// const { data: pokemon } = await useFetch<Pokemon>(`/api/pokemon/1?url=${url}`)
 
 onMounted(async () => {
   //   console.log(pokemon.value?.name)
