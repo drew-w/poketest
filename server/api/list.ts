@@ -8,7 +8,6 @@ export default defineEventHandler(async event => {
     `https://pokeapi.co/api/v2/pokemon?limit=${count}`
   )
   const urlArray: Promise<Pokemon>[] = results.map(result => $fetch(result.url))
-  console.log(urlArray)
   const pokemonResults = await Promise.all(urlArray)
   const cardData = pokemonResults.map(result => {
     return {
