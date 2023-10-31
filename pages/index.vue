@@ -29,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
 import type { PokemonCard } from '~/types/pokemon'
 
-const { data: initialPokemon, error } = await useFetch<PokemonCard[] | null>(
-  '/api/list?count=10'
+const { data: initialPokemon } = await useFetch<PokemonCard[] | null>(
+  '/api/list?count=60'
 )
 // store our list of pokemon here
 const pokemonList = ref(initialPokemon)
@@ -50,11 +50,6 @@ const filteredPokemon = computed(() => {
   return (pokemonList.value || []).filter(listItem =>
     listItem.name.includes(text.value)
   )
-})
-
-//todo REMOVE THIS
-onMounted(async () => {
-  // console.log(error)
 })
 </script>
 
