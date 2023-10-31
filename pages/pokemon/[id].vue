@@ -5,7 +5,7 @@
       <div class="heading">
         <h2 class="name">{{ pokemon?.name }}</h2>
         <NuxtImg
-          :src="pokemon?.sprites.front_shiny"
+          :src="pokemon?.sprites.front_default"
           width="200"
           height="200"
           draggable="false"
